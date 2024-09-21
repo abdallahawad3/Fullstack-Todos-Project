@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import type { AxiosError } from "axios";
 import type { IErrorResponse } from "../interfaces";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface IFormInput {
   username: string;
@@ -34,9 +34,11 @@ const Register = () => {
       if (status == 200) {
         toast.success("Register Success, You will navigate to login page after 2s", {
           position: "bottom-center",
+          duration: 1500,
           style: { backgroundColor: "black", color: "white", width: "fit-content" },
         });
         setTimeout(() => {
+          setIsLoading(false);
           navigate("/login");
         }, 2000);
       }
@@ -46,7 +48,6 @@ const Register = () => {
       toast.error(`${messageTxt}`, {
         position: "bottom-center",
       });
-    } finally {
       setIsLoading(false);
     }
   };
@@ -78,6 +79,12 @@ const Register = () => {
           Register Now
         </Button>
       </form>
+      <div className="flex items-center justify-center mt-3 gap-2">
+        <span>Have account?</span>
+        <Link className="text-indigo-700 text-sm font-semibold underline" to="/login">
+          Login<span aria-hidden="true">&rarr;</span>
+        </Link>
+      </div>
     </div>
   );
 };

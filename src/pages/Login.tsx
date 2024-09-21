@@ -7,17 +7,15 @@ import { LoginSchema } from "../validation";
 import InputErrorMessage from "../components/ErrorMessage";
 import axiosInstance from "../config/axios.config";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import type { AxiosError } from "axios";
 import type { IErrorResponse } from "../interfaces";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 interface IFormInput {
   identifier: string;
   password: string;
 }
 const Login = () => {
-  const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -44,7 +42,7 @@ const Login = () => {
         });
         localStorage.setItem("user", JSON.stringify(response.data));
         setTimeout(() => {
-          navigate("/");
+          location.replace("/");
           setIsLoading(false);
         }, 2000);
       }
@@ -78,6 +76,12 @@ const Login = () => {
           Login Now
         </Button>
       </form>
+      <div className="flex items-center justify-center mt-3 gap-2">
+        <span>Don't have account?</span>
+        <Link className="text-indigo-700 text-sm font-semibold underline" to="/register">
+          Register<span aria-hidden="true">&rarr;</span>
+        </Link>
+      </div>
     </div>
   );
 };

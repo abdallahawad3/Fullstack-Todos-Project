@@ -10,3 +10,8 @@ body {
 .center-h {
   height: calc(100vh - 64px);
 }
+
+nav .active {
+  background-color: #111827;
+  color: #fff;
+}

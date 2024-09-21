@@ -23,8 +23,22 @@ const router = createBrowserRouter(
             </ProtectedRoutes>
           }
         />
-        <Route path="todos" element={<Todos />} />
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="todos"
+          element={
+            <ProtectedRoutes isAllowed={userData?.jwt} redirectPath="/login">
+              <Todos />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <ProtectedRoutes isAllowed={userData?.jwt} redirectPath="/login">
+              <Profile />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Route>
