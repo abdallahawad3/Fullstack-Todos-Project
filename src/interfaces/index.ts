@@ -9,6 +9,11 @@ export interface IRegisterInput {
   };
 }
 
+export interface ILoginInput {
+  name: "identifier" | "password";
+  label: string;
+  type: string;
+}
 export interface IErrorResponse {
   error: {
     details?: {

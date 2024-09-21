@@ -17,4 +17,14 @@ const RegisterSchema = yup
   })
   .required();
 
-export { RegisterSchema };
+const LoginSchema = yup.object({
+  identifier: yup
+    .string()
+    .required("Email is required")
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Enter valid email"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "Enter a valid password"),
+});
+export { RegisterSchema, LoginSchema };

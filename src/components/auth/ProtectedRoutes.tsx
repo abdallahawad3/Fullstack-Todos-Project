@@ -5,10 +5,11 @@ interface IProps {
   isAllowed: boolean;
   children: ReactNode;
   redirectPath: string;
+  data?: unknown;
 }
 
-const ProtectedRoutes = ({ children, isAllowed, redirectPath }: IProps) => {
-  return isAllowed ? children : <Navigate to={redirectPath} />;
+const ProtectedRoutes = ({ children, isAllowed, redirectPath, data }: IProps) => {
+  return isAllowed ? children : <Navigate to={redirectPath} state={data} />;
 };
 
 export default ProtectedRoutes;

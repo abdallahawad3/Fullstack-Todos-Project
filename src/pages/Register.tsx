@@ -36,8 +36,6 @@ const Register = () => {
           position: "bottom-center",
           style: { backgroundColor: "black", color: "white", width: "fit-content" },
         });
-        console.log("NAVIGATION");
-
         setTimeout(() => {
           navigate("/login");
         }, 2000);

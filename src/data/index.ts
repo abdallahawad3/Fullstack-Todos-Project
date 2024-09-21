@@ -1,4 +1,4 @@
-import type { IRegisterInput } from "../interfaces";
+import type { ILoginInput, IRegisterInput } from "../interfaces";
 
 export const REGISTER_FORM: IRegisterInput[] = [
   {
@@ -30,16 +30,15 @@ export const REGISTER_FORM: IRegisterInput[] = [
   },
 ];
 
-// <div className="space-y-1">
-//   <label htmlFor=""> Email </label>
-//   <Input
-// {...register("email", {
-//   required: "The Email is required",
-//   pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-// })}
-//     aria-invalid={errors.email ? "true" : "false"}
-//     type="email"
-//   />
-//   {errors.email?.type === "pattern" && <InputErrorMessage msg="Enter Valid email" />}
-//   {errors.email?.type === "required" && <InputErrorMessage msg="The Email is Required" />}
-// </div>;
+export const LOGIN_FORM: ILoginInput[] = [
+  {
+    label: "Email",
+    type: "email",
+    name: "identifier",
+  },
+  {
+    label: "Password",
+    type: "password",
+    name: "password",
+  },
+];
