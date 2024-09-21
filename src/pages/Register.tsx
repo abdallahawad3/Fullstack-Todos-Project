@@ -8,9 +8,9 @@ import { RegisterSchema } from "../validation";
 import axiosInstance from "../config/axios.config";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import type { AxiosError } from "axios";
 import type { IErrorResponse } from "../interfaces";
+import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
   username: string;
@@ -19,6 +19,7 @@ interface IFormInput {
 }
 const Register = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,12 +32,15 @@ const Register = () => {
     try {
       const { status } = await axiosInstance.post("/auth/local/register", data);
       if (status == 200) {
-        toast.success("Register Success, You will navigate to login page to login page", {
+        toast.success("Register Success, You will navigate to login page after 2s", {
           position: "bottom-center",
           style: { backgroundColor: "black", color: "white", width: "fit-content" },
         });
+        console.log("NAVIGATION");
 
-        <Navigate to={"/login"} />;
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
     } catch (error) {
       const errorObj = error as AxiosError<IErrorResponse>;
