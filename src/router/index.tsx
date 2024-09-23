@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PageNotFound from "../pages/PageNotFound";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
+import ErrorHandler from "../components/errors/ErrorHandler";
 
 const userDataString = localStorage.getItem("user");
 const userData = userDataString ? JSON.parse(userDataString) : null;
@@ -14,7 +15,7 @@ const userData = userDataString ? JSON.parse(userDataString) : null;
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<RootLayout />}>
+      <Route path="/" element={<RootLayout />} errorElement={<ErrorHandler />}>
         <Route
           index
           element={
