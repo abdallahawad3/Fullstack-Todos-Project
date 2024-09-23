@@ -3,6 +3,7 @@ import Todo from "../components/Todo";
 import Button from "../components/ui/Button";
 import useAuthenticationQuery from "../hooks/useAuthenticationQuery";
 import type { ITodo } from "../interfaces";
+
 // LocalStorage..🛅
 const userDataString = localStorage.getItem("user");
 
@@ -20,6 +21,9 @@ const HomePage = () => {
       },
     },
   });
+
+  // Handlers....🫱🏼‍🫲🏼
+
   // Renders...🔃
 
   if (isLoading) return <h3>Loading....</h3>;

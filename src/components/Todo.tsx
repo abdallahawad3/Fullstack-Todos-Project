@@ -21,6 +21,7 @@ const Todo = ({ todo, idx, setEditTodo }: IProps) => {
   // States..🗽
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isEditModal, setIsEditModal] = useState<boolean>(false);
+  const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState<ITodo>({
     description: "",
@@ -42,9 +43,37 @@ const Todo = ({ todo, idx, setEditTodo }: IProps) => {
     setTodoToEdit(todo);
   };
 
+  const onCloseDeleteModal = () => {
+    setIsDeleteModal(false);
+  };
+  const onOpenDeleteModal = () => {
+    setIsDeleteModal(true);
+  };
+
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setTodoToEdit((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onDelete = async (id: string) => {
+    try {
+      const { status } = await axiosInstance.delete(`/todos/${id}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+
+      if (status) {
+        toast.success("DELETE TODO SUCCESSFULLY", {
+          duration: 1000,
+          position: "top-center",
+        });
+        onCloseDeleteModal();
+        location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onSubmitEdit = async (e: FormEvent<HTMLFormElement>, id: string) => {
@@ -91,7 +120,7 @@ const Todo = ({ todo, idx, setEditTodo }: IProps) => {
           <Button onClick={onOpenEditModal} className="p-[7px]" variant={"default"}>
             Edit
           </Button>
-          <Button className="p-[7px]" variant={"danger"}>
+          <Button onClick={onOpenDeleteModal} className="p-[7px]" variant={"danger"}>
             Remove
           </Button>
         </div>
@@ -159,6 +188,27 @@ const Todo = ({ todo, idx, setEditTodo }: IProps) => {
             </Button>
           </div>
         </form>
+      </Modal>
+      {/* DELETE MODAL..❌ */}
+      <Modal isOpen={isDeleteModal} setOpenAndClose={onCloseDeleteModal} title="Delete TODO ">
+        <p className="font-medium text-sm text-red-500">
+          This action cannot be undone. This will permanently delete your account and remove your
+          data from our servers.
+        </p>
+
+        <div className="flex mt-3 gap-2 flex-wrap sm:flex-nowrap ">
+          <Button
+            onClick={() => {
+              onDelete(todo.documentId);
+            }}
+            fullWidth
+            variant={"danger"}>
+            Yes, Remove
+          </Button>
+          <Button onClick={onCloseDeleteModal} type="button" fullWidth variant={"cancel"}>
+            Cancel
+          </Button>
+        </div>
       </Modal>
     </>
   );
