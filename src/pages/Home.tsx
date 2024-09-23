@@ -1,25 +1,20 @@
-import axiosInstance from "../config/axios.config";
 import Todo from "../components/Todo";
 import Button from "../components/ui/Button";
-import { useQuery } from "@tanstack/react-query";
-import type { ITodo } from "../interfaces";
+import useAuthenticationQuery from "../hooks/useAuthenticationQuery";
 // LocalStorage..🛅
 const userDataString = localStorage.getItem("user");
 
 const HomePage = () => {
   // States..🗽
-
   const { jwt } = userDataString ? JSON.parse(userDataString) : null;
-  const { isLoading, data } = useQuery<ITodo[]>({
+  const { isLoading, data } = useAuthenticationQuery({
     queryKey: ["todos"],
-    queryFn: async () => {
-      const { data } = await axiosInstance.get("/users/me?populate=todos", {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-          "Content-Type": "Application/json",
-        },
-      });
-      return data.todos;
+    url: "/users/me?populate=todos",
+    config: {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "Application/json",
+      },
     },
   });
   // Renders...🔃
