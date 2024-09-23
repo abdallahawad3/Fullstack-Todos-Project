@@ -117,10 +117,10 @@ const Todo = ({ todo, idx, setEditTodo }: IProps) => {
       <div className="font-semibold border-2 max-w-lg mx-auto shadow-lg hover:bg-gray-200 hover:border-gray-200 p-2 rounded-md space-y-1">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <Button onClick={onOpenEditModal} className="p-[7px]" variant={"default"}>
+          <Button onClick={onOpenEditModal} className="px-[17px] py-[5px]" variant={"default"}>
             Edit
           </Button>
-          <Button onClick={onOpenDeleteModal} className="p-[7px]" variant={"danger"}>
+          <Button onClick={onOpenDeleteModal} className="px-[10px] py-[5px]" variant={"danger"}>
             Remove
           </Button>
         </div>

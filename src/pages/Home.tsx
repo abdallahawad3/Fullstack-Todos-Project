@@ -3,6 +3,7 @@ import Todo from "../components/Todo";
 import Button from "../components/ui/Button";
 import useAuthenticationQuery from "../hooks/useAuthenticationQuery";
 import type { ITodo } from "../interfaces";
+import TodoSkeleton from "../components/TodoSkeleton";
 
 // LocalStorage..🛅
 const userDataString = localStorage.getItem("user");
@@ -26,7 +27,7 @@ const HomePage = () => {
 
   // Renders...🔃
 
-  if (isLoading) return <h3>Loading....</h3>;
+  if (isLoading) <TodoSkeleton />;
   const RenderTodo =
     data &&
     data.map((ele, idx) => (
@@ -34,7 +35,7 @@ const HomePage = () => {
     ));
 
   return (
-    <section className="center-h flex items-center justify-center">
+    <section className="mt-20 flex items-center justify-center">
       <div className="w-[100vw] space-y-3">
         <div className="flex justify-center">
           <Button>ADD TODO</Button>
