@@ -1,14 +1,17 @@
+import { useState } from "react";
 import Todo from "../components/Todo";
 import Button from "../components/ui/Button";
 import useAuthenticationQuery from "../hooks/useAuthenticationQuery";
+import type { ITodo } from "../interfaces";
 // LocalStorage..🛅
 const userDataString = localStorage.getItem("user");
 
 const HomePage = () => {
   // States..🗽
+  const [editTodo, setEditTodo] = useState<ITodo>({ title: "", description: "", documentId: "" });
   const { jwt } = userDataString ? JSON.parse(userDataString) : null;
   const { isLoading, data } = useAuthenticationQuery({
-    queryKey: ["todos"],
+    queryKey: ["todos", editTodo.title],
     url: "/users/me?populate=todos",
     config: {
       headers: {
@@ -20,7 +23,11 @@ const HomePage = () => {
   // Renders...🔃
 
   if (isLoading) return <h3>Loading....</h3>;
-  const RenderTodo = data && data.map((ele, idx) => <Todo idx={idx + 1} todo={ele} key={ele.id} />);
+  const RenderTodo =
+    data &&
+    data.map((ele, idx) => (
+      <Todo setEditTodo={setEditTodo} idx={idx + 1} todo={ele} key={ele.documentId} />
+    ));
 
   return (
     <section className="center-h flex items-center justify-center">
