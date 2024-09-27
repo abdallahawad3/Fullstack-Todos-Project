@@ -82,12 +82,12 @@ const Navbar = () => {
                   <>
                     <Link
                       to={"/login"}
-                      className="bg-blue-600 py-1 rounded-sm  text-white hover:bg-blue-700">
+                      className="bg-blue-600 py-1 rounded-sm  p-2 text-white hover:bg-blue-700">
                       Login
                     </Link>
                     <Link
                       to={"/register"}
-                      className="bg-emerald-600 py-1 rounded-sm  text-white hover:bg-emerald-700">
+                      className="bg-emerald-600 py-1 rounded-sm  p-2 text-white hover:bg-emerald-700">
                       Register
                     </Link>
                   </>
