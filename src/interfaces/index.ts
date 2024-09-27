@@ -30,3 +30,8 @@ export interface ITodo {
   title: string;
   description: string;
 }
+
+export interface IAddNewTodo {
+  title: string;
+  description: string;
+}

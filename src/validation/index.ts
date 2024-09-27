@@ -27,4 +27,13 @@ const LoginSchema = yup.object({
     .required("Password is required")
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "Enter a valid password"),
 });
-export { RegisterSchema, LoginSchema };
+
+const POST_NEW_TODO = yup.object({
+  title: yup.string().required("Title is required").min(5, "Title should be at least 5 character"),
+  description: yup
+    .string()
+    .required("Description is required")
+    .min(20, "Description should be at least 20 character"),
+});
+
+export { RegisterSchema, LoginSchema, POST_NEW_TODO };

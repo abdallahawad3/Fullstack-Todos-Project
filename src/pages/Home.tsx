@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 import Todo from "../components/Todo";
 import Button from "../components/ui/Button";
 import useAuthenticationQuery from "../hooks/useAuthenticationQuery";
@@ -7,6 +7,11 @@ import axiosInstance from "../config/axios.config";
 import Modal from "../components/ui/Modal";
 import MyTextarea from "../components/ui/Textarea";
 import Input from "../components/ui/Input";
+import { POST_NEW_TODO } from "../validation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import type { IAddNewTodo } from "../interfaces";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import InputErrorMessage from "../components/ErrorMessage";
 
 // LocalStorage..🛅
 const userDataString = localStorage.getItem("user");
@@ -27,6 +32,14 @@ const HomePage = () => {
       },
     },
   });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IAddNewTodo>({
+    resolver: yupResolver(POST_NEW_TODO),
+  });
+
   const onCloseAddTodoModal = () => {
     setIsAddTodoModal(false);
   };
@@ -36,15 +49,13 @@ const HomePage = () => {
     setNewTodo((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmitHandler: SubmitHandler<IAddNewTodo> = async (data) => {
     try {
       const { status } = await axiosInstance.post(
         "/todos",
         {
           data: {
-            title: newTodo.title,
-            description: newTodo.description,
+            ...data,
             user: {
               id: userData.user.id,
             },
@@ -60,7 +71,10 @@ const HomePage = () => {
       if (status == 201) {
         setIsAddTodoModal(false);
         setQueryVersion(queryVersion + 1);
-        setNewTodo({ title: "", description: "" });
+        {
+          data.title = "";
+          data.description = "";
+        }
       }
     } catch (error) {
       console.log(error);
@@ -102,12 +116,18 @@ const HomePage = () => {
       </div>
       {/* Add Todo Modal */}
       <Modal isOpen={isAddTodoModal} setOpenAndClose={onCloseAddTodoModal} title="ADD NEW TODO">
-        <form onSubmit={onSubmitHandler}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
           <div>
             <p className="text-sm/6 font-medium mb-1">Title</p>
-            <Input name="title" value={newTodo.title} onChange={onChangeHandler} />
+            <Input {...register("title")} type={"text"} />
+            <InputErrorMessage msg={errors["title"]?.message} />
           </div>
-          <MyTextarea name="description" value={newTodo.description} onChange={onChangeHandler} />
+          <MyTextarea
+            {...register("description")}
+            value={newTodo.description}
+            onChange={onChangeHandler}
+          />
+          <InputErrorMessage msg={errors["description"]?.message} />
 
           <div className="flex items-center space-x-2 mt-2">
             <Button isLoading={isLoading} type="submit" fullWidth variant={"default"}>
