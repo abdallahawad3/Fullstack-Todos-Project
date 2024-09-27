@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# 🚀 Full Stack Todo Application 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This repository contains the frontend for a full-stack application built using **React**. The application allows users to register, log in, manage their todos, and update their profile information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage
 
-## Expanding the ESLint configuration
+- **User Registration & Login:**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - Navigate to the login or registration page.
+  - Fill out the form using React Hook Form for validation.
+  - Submit the form to register or log in.
 
-- Configure the top-level `parserOptions` property like this:
+- **Managing Todos:**
+  - After logging in, navigate to the todos page.
+  - Use the form to add new todos or edit existing ones.
+  - Click on delete to remove a todo.
+- **Updating Profile:**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+  - Navigate to the profile page.
+  - Update your personal information and save changes.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Technologies Used
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Frontend:**
+  - React.🌞
+  - TypeScript.🗽
+  - Tailwind CSS.👋
+  - React Hook Form.✈️
+  - React Router.💯
+  - React Query.🪝
+  - React Hot Toast.🗽
+  - Vite.🔥
+- **Backend:**
+  - Strapi.🔃
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Features
+
+- **User Authentication:**
+
+  - Users can register for a new account.
+  - Existing users can log in.
+
+- **Todo Management:**
+
+  - Users can create, read, update, and delete todos.
+  - Fetch all todos associated with the logged-in user.
+
+- **Profile Management:**
+  - Users can update their profile information, including first name, last name, and address.
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/abdallahawad3/TODO-BACKEND
+   cd TODO-BACKEND
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the frontend application:
+
+   ```bash
+   npm run develop
+   ```
+
+## **_Install Backend_**
+
+- This is Repo For backend, go to it and i will explain how to install and run the backend [Click Here!](https://github.com/abdallahawad3/TODO-BACKEND)
