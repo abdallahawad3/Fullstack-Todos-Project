@@ -2,7 +2,6 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import Todo from "../components/Todo";
 import Button from "../components/ui/Button";
 import useAuthenticationQuery from "../hooks/useAuthenticationQuery";
-import type { ITodo } from "../interfaces";
 import TodoSkeleton from "../components/TodoSkeleton";
 import axiosInstance from "../config/axios.config";
 import Modal from "../components/ui/Modal";
@@ -16,10 +15,10 @@ const HomePage = () => {
   // States..🗽
   const [newTodo, setNewTodo] = useState({ title: "", description: "" });
   const [isAddTodoModal, setIsAddTodoModal] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<ITodo>({ title: "", description: "", documentId: "" });
+  const [queryVersion, setQueryVersion] = useState(1);
   const userData = userDataString ? JSON.parse(userDataString) : null;
   const { isLoading, data } = useAuthenticationQuery({
-    queryKey: ["todos", editTodo.title],
+    queryKey: [`todos-${queryVersion}`],
     url: "/users/me?populate=*",
     config: {
       headers: {
@@ -60,7 +59,7 @@ const HomePage = () => {
       );
       if (status == 201) {
         setIsAddTodoModal(false);
-        location.reload();
+        setQueryVersion(queryVersion + 1);
         setNewTodo({ title: "", description: "" });
       }
     } catch (error) {
@@ -72,16 +71,25 @@ const HomePage = () => {
 
   // Renders...🔃
 
-  if (isLoading) <TodoSkeleton />;
+  if (isLoading) {
+    <TodoSkeleton />;
+    return;
+  }
   const RenderTodo =
     data?.length &&
     data.map((ele, idx) => (
-      <Todo setEditTodo={setEditTodo} idx={idx + 1} todo={ele} key={ele.documentId} />
+      <Todo
+        version={queryVersion}
+        queryVersion={setQueryVersion}
+        idx={idx + 1}
+        todo={ele}
+        key={ele.documentId}
+      />
     ));
 
   return (
-    <section className="mt-20 flex items-center justify-center">
-      <div className="w-[100vw] space-y-3">
+    <section className="mx-auto my-20">
+      <div className="space-y-3">
         <div className="flex justify-center">
           <Button
             onClick={() => {
@@ -105,7 +113,7 @@ const HomePage = () => {
             <Button isLoading={isLoading} type="submit" fullWidth variant={"default"}>
               Add
             </Button>
-            <Button onClick={onCloseAddTodoModal} fullWidth variant={"cancel"}>
+            <Button type="button" onClick={onCloseAddTodoModal} fullWidth variant={"cancel"}>
               cancel
             </Button>
           </div>

@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  min-height: 100vh;
-  min-width: 100vw;
-}
-
 .center-h {
   height: calc(100vh - 64px);
 }
@@ -14,4 +9,11 @@ body {
 nav .active {
   background-color: #111827;
   color: #fff;
+}
+
+@media (max-width: 550px) {
+  .container {
+    padding-inline: 17px;
+    margin-inline: auto;
+  }
 }

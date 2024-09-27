@@ -1,5 +1,6 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import logo from "../assets/logo.png";
+import avatar from "../assets/logo.svg";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
 import Button from "./ui/Button";
@@ -45,7 +46,7 @@ const Navbar = () => {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between ">
+        <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -61,11 +62,18 @@ const Navbar = () => {
                 <img alt="Your Company" src={logo} className="h-8 w-auto" />
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:block">
+            <div className="hidden  sm:block">
               <div className="flex space-x-4">
                 {userData?.jwt ? (
                   <>
                     {navbarLinks}
+                    <Link to={"/profile"}>
+                      <img
+                        className="w-10 h-10 bg-emerald-50 rounded-full "
+                        src={avatar}
+                        alt="Hello fci"
+                      />
+                    </Link>
                     <Button onClick={onLogout} variant={"danger"} className="p-2">
                       Logout
                     </Button>
@@ -74,12 +82,12 @@ const Navbar = () => {
                   <>
                     <Link
                       to={"/login"}
-                      className="bg-blue-600 py-1 rounded-sm px-2 text-white hover:bg-blue-700">
+                      className="bg-blue-600 py-1 rounded-sm  text-white hover:bg-blue-700">
                       Login
                     </Link>
                     <Link
                       to={"/register"}
-                      className="bg-emerald-600 py-1 rounded-sm px-2 text-white hover:bg-emerald-700">
+                      className="bg-emerald-600 py-1 rounded-sm  text-white hover:bg-emerald-700">
                       Register
                     </Link>
                   </>
