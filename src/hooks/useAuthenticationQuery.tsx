@@ -14,7 +14,7 @@ const useAuthenticationQuery = ({ queryKey, url, config }: IAuthenticationQuery)
     queryKey,
     queryFn: async () => {
       const { data } = await axiosInstance.get(url, config);
-      return data.data;
+      return data.todos;
     },
   });
 };

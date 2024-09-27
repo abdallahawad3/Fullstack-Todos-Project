@@ -20,7 +20,7 @@ const HomePage = () => {
   const userData = userDataString ? JSON.parse(userDataString) : null;
   const { isLoading, data } = useAuthenticationQuery({
     queryKey: ["todos", editTodo.title],
-    url: "/todos",
+    url: "/users/me?populate=*",
     config: {
       headers: {
         Authorization: `Bearer ${userData.jwt}`,
@@ -28,7 +28,6 @@ const HomePage = () => {
       },
     },
   });
-
   const onCloseAddTodoModal = () => {
     setIsAddTodoModal(false);
   };
@@ -47,7 +46,9 @@ const HomePage = () => {
           data: {
             title: newTodo.title,
             description: newTodo.description,
-            // user: [userData.user.id],
+            user: {
+              id: userData.user.id,
+            },
           },
         },
         {
