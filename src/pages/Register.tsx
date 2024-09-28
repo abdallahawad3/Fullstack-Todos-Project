@@ -69,7 +69,7 @@ const Register = () => {
     </div>
   ));
   return (
-    <div className=" center-h flex justify-center items-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+    <div className=" center-h flex justify-center items-center ">
       <div className="w-[500px] px-2 md:w-[600px] md:px-0">
         <h1 className="text-center font-semibold text-lg bg-black text-white p-2 rounded-md mb-3">
           Register To Access
@@ -80,7 +80,7 @@ const Register = () => {
             Register Now
           </Button>
         </form>
-        <div className="flex items-center justify-center mt-3 gap-2 text-white">
+        <div className="flex items-center justify-center mt-3 gap-2 text-gray-800">
           <span>Have account?</span>
           <Link className="text-blue-800 text-sm font-semibold underline" to="/login">
             Login<span aria-hidden="true">&rarr;</span>

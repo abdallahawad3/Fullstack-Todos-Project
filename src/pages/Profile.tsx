@@ -63,17 +63,15 @@ const Profile = () => {
   };
 
   return (
-    <form
-      onSubmit={onSubmitHandle}
-      className="py-20 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% container">
+    <form onSubmit={onSubmitHandle} className="py-20 container">
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-2xl font-semibold leading-7 text-white ">Profile</h2>
-          <p className="mt-1 leading-6 text-white ">Update Your Data</p>
+          <h2 className="text-2xl font-semibold leading-7 text-gray-800 ">Profile</h2>
+          <p className="mt-1 leading-6 text-gary-800 ">Update Your Data</p>
         </div>
         <div className="mt-10 border-b pb-12 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
-            <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gary-800">
               Username
             </label>
             <div className="mt-2 space-y-2">
@@ -87,7 +85,7 @@ const Profile = () => {
               />
             </div>
             <div className="sm:col-span-4 ">
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gary-800">
                 email
               </label>
               <div className="mt-2 space-y-2">
@@ -105,12 +103,14 @@ const Profile = () => {
         </div>
       </div>
       <div className="border-b pt-12 border-gray-900/10 pb-12">
-        <h2 className="text-base font-semibold leading-7 text-white">Personal Information</h2>
-        <p className="mt-1 text-sm leading-6 text-white">Update your information.✅</p>
+        <h2 className="text-base font-semibold leading-7 text-gary-800">Personal Information</h2>
+        <p className="mt-1 text-sm leading-6 text-gary-800">Update your information.✅</p>
 
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-3">
-            <label htmlFor="firstname" className="block text-sm font-medium leading-6 text-white">
+            <label
+              htmlFor="firstname"
+              className="block text-sm font-medium leading-6 text-gary-800">
               First name
             </label>
             <div className="mt-2">
@@ -125,7 +125,7 @@ const Profile = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <label htmlFor="lastname" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="lastname" className="block text-sm font-medium leading-6 text-gary-800">
               Last name
             </label>
             <div className="mt-2">
@@ -140,7 +140,7 @@ const Profile = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <label htmlFor="country" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="country" className="block text-sm font-medium leading-6 text-gary-800">
               Country
             </label>
             <div className="mt-2">
@@ -151,7 +151,7 @@ const Profile = () => {
           <div className="col-span-full">
             <label
               htmlFor="street-address"
-              className="block text-sm font-medium leading-6 text-white">
+              className="block text-sm font-medium leading-6 text-gary-800">
               Street address
             </label>
             <div className="mt-2">
@@ -167,7 +167,7 @@ const Profile = () => {
           </div>
 
           <div className="sm:col-span-2 sm:col-start-1">
-            <label htmlFor="city" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="city" className="block text-sm font-medium leading-6 text-gary-800">
               City
             </label>
             <div className="mt-2">
@@ -183,7 +183,7 @@ const Profile = () => {
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor="state" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="state" className="block text-sm font-medium leading-6 text-gary-800">
               State / Province
             </label>
             <div className="mt-2">
@@ -198,7 +198,7 @@ const Profile = () => {
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor="zip" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="zip" className="block text-sm font-medium leading-6 text-gary-800">
               ZIP / Postal code
             </label>
             <div className="mt-2">
