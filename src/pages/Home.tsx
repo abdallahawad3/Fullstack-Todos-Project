@@ -102,7 +102,7 @@ const HomePage = () => {
     ));
 
   return (
-    <section className="mx-auto my-20">
+    <section className="mx-auto min-h-[710px] bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  py-20">
       <div className="space-y-3">
         <div className="flex justify-center">
           <Button
@@ -112,7 +112,13 @@ const HomePage = () => {
             ADD TODO
           </Button>
         </div>
-        <div className="space-y-3">{data?.length ? RenderTodo : <h1> Not Todos Yet.!😅</h1>}</div>
+        <div className="space-y-3">
+          {data?.length ? (
+            RenderTodo
+          ) : (
+            <h1 className="text-white container text-lg font-semibold"> Not Todos Yet.!😅</h1>
+          )}
+        </div>
       </div>
       {/* Add Todo Modal */}
       <Modal isOpen={isAddTodoModal} setOpenAndClose={onCloseAddTodoModal} title="ADD NEW TODO">

@@ -5,7 +5,7 @@ const RootLayout = () => {
   return (
     <main>
       <Navbar />
-      <div className="container">
+      <div className="">
         <Outlet />
       </div>
     </main>

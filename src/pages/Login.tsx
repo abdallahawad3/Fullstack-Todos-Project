@@ -66,21 +66,26 @@ const Login = () => {
     </div>
   ));
   return (
-    <div className="max-w-sm sm:max-w-md mx-auto center-h flex flex-col justify-center">
-      <h1 className="text-center  font-semibold text-lg bg-black text-white p-2 rounded-md mb-3">
-        Login To Access
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        {RenderLoginInputs}
-        <Button isLoading={isLoading} fullWidth>
-          Login Now
-        </Button>
-      </form>
-      <div className="flex items-center justify-center mt-3 gap-2">
-        <span>Don't have account?</span>
-        <Link className="text-indigo-700 text-sm font-semibold underline" to="/register">
-          Register<span aria-hidden="true">&rarr;</span>
-        </Link>
+    <div className="flex justify-center items-center min-h-[710px] bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+      <div className="w-[500px] px-2 md:w-[600px] md:px-0">
+        <h1 className="text-center font-semibold text-lg bg-black text-white p-2 rounded-md mb-3">
+          Login To Access
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+          {RenderLoginInputs}
+          <Button isLoading={isLoading} fullWidth>
+            Login Now
+          </Button>
+        </form>
+        <div className="flex items-center justify-center mt-3 gap-2 text-white">
+          <span>Don't have account?</span>
+          <Link className="text-blue-800 text-sm font-semibold underline" to="/register">
+            Register
+            <span className="" aria-hidden="true">
+              &rarr;
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   );
