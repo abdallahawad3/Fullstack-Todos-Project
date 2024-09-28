@@ -55,8 +55,8 @@ This repository contains the frontend for a full-stack application built using *
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/abdallahawad3/TODO-BACKEND
-   cd TODO-BACKEND
+   git clone https://github.com/abdallahawad3/Fullstack-Todos-Project
+   cd Fullstack-Todos-Project
    ```
 
 2. Install dependencies:
@@ -68,7 +68,7 @@ This repository contains the frontend for a full-stack application built using *
 3. Start the frontend application:
 
    ```bash
-   npm run develop
+   npm run dev
    ```
 
 ## **_Install Backend_**
