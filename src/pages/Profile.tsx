@@ -38,7 +38,7 @@ const Profile = () => {
         }));
       }
     })();
-  }, []);
+  }, [userData.jwt]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
